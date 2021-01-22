@@ -1,0 +1,35 @@
+{% extends 'delivery/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <section class="text-light dark-grey-text mb-5">
+        <div class="container">
+            <p>{{ user.username }}</p>
+            <h1>Your Ads</h1>
+            <table class="table table-hover text-light" style="border: white; border-style: solid;border-radius: 65px;border-width: thin;">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Posted on</th>
+                    <th>Want to Update?</th>
+                    <th>Sold?</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in userPosts %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.category }}</td>
+                        <td>$ {{ post.price }}</td>
+                        <td>{{ post.datePosted }}</td>
+                        <td> <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">Update</a> </td>
+					<td> <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.id %}">Delete</a> </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends "delivery/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section class="text-light dark-grey-text mb-5">
+
+        <form class="col-lg-6 offset-lg-3" style="border: white; border-style: solid;border-radius: 25px;border-width: thin;" method="POST" enctype='multipart/form-data'>
+            <h1 class="mb-3 mt-3">Enter your item details</h1>
+            {% csrf_token %}
+            <fieldset class="form-group">
+
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-light" type="submit">Sell</button>
+            </div>
+        </form>
+
+</section>
+{% endblock content %}

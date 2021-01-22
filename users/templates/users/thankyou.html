@@ -1,0 +1,11 @@
+{% extends 'delivery/base.html' %}
+{% block content %}
+    <section class="text-center text-dark dark-grey-text mb-5">
+        <div class="container">
+            <h1>Thank you!</h1>
+            <p>Please check your email inbox/spam and verify your email address. Once verified you can use the below link to login!</p>
+            <a class="btn btn-xl btn-outline-dark" href="{% url 'login' %}" style="color: black;"> Login Now! </a>
+        </div>
+
+    </section>
+{% endblock content %}

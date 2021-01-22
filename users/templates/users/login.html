@@ -1,0 +1,23 @@
+{% extends 'delivery/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <section class="text-light dark-grey-text mb-5">
+                <!-- About Section Heading-->
+
+
+                    <form class="col-lg-6 offset-lg-3" method="POST" style="border: white; border-style: solid;border-radius: 25px;border-width: thin;">
+                        <h1 class="mb-3 mt-3">Login</h1>
+                        {% csrf_token %}
+
+                        {{ form|crispy }}
+                        <button class="btn btn-xl btn-outline-light mb-3" type="submit"> Login</button>
+
+                    </form>
+                    <p>Do not have an Account? <a href="{% url 'register' %}" style="color: black;"> Sign Up Now!</a>
+                    </p>
+
+
+
+        </section>
+
+{% endblock content %}
