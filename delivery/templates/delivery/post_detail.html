@@ -1,0 +1,27 @@
+{% extends "delivery/base.html" %}
+{% block content %}
+    <section class="text-light dark-grey-text mb-5">
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="image-link" src="{{ MEDIA_URL }}{{ object.images.url }}" alt=""
+                     style="max-height: 250px;max-width: 250px;">
+            </div>
+
+            <div class="col-md-4 text-white">
+                <h3 class="my-3">Item Description</h3>
+                <p>{{ object.description }}</p>
+                <p>{{ object.userId }}</p>
+                <h3 class="my-3">Details</h3>
+                <ul>
+                    <li><label>Email:</label> {{ object.email }}</li>
+                    <li><label>Location:</label> {{ object.zip }}</li>
+                    <li><label>Price:</label> {{ object.price }}</li>
+                    <li></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock content %}
