@@ -9,10 +9,10 @@
                 <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Posted on</th>
-                    <th>Want to Update?</th>
+                    <th class="d-none d-lg-table-cell">Category</th>
+                    <th class="d-none d-lg-table-cell">Price</th>
+                    <th class="d-none d-lg-table-cell">Posted on</th>
+                    <th class="d-none d-lg-table-cell">Want to Update?</th>
                     <th>Sold?</th>
                 </tr>
                 </thead>
@@ -20,10 +20,10 @@
                 {% for post in userPosts %}
                     <tr>
                         <td>{{ post.title }}</td>
-                        <td>{{ post.category }}</td>
-                        <td>$ {{ post.price }}</td>
-                        <td>{{ post.datePosted }}</td>
-                        <td> <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">Update</a> </td>
+                        <td class="d-none d-lg-table-cell">{{ post.category }}</td>
+                        <td class="d-none d-lg-table-cell">$ {{ post.price }}</td>
+                        <td class="d-none d-lg-table-cell">{{ post.datePosted }}</td>
+                        <td class="d-none d-lg-table-cell"> <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">Update</a> </td>
 					<td> <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.id %}">Delete</a> </td>
                     </tr>
                 {% endfor %}
