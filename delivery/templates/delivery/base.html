@@ -8,11 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description"
           content="Experienced Developer with a demonstrated history of working in the IT industry. Skilled in Python, SQL and C++. Strong problem-solving skills. Pursuing Master of Science in Computer Science from the University of South Florida. Hackerrank Certified Problem Solver and Python Programmer.">
-    <meta name="keywords" content="Rohit, Pantam, rohitpantam, pantam, usf, software, engineer, python, developer">
+    <meta name="keywords"
+          content="Student, student, preowned, used, cheap, Cheap, Used, Preowned, USF, University, Rohit, Pantam, rohitpantam, pantam, usf, software, engineer, python, developer">
     <meta name="author" content="Rohit Pantam">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -255,7 +255,7 @@
         }
 
         .navbar-collapse {
-            background-color: #006747;
+            background-color: #05386B;
         }
 
         @media (max-width: 992px) {
@@ -283,10 +283,17 @@
             }
         }
 
-    </style>
-</head>
+        .material-icons.md-48 {
+            font-size: 48px !important;
+            height: 48px !important;
+            width: 48px !important;
+        }
 
-<body style="background-color: #006747;" onload="myFunction()">
+    </style>
+
+    <head>
+
+<body style="background-color: #05386B;" onload="myFunction()">
 <div id="loader" class="lds-ring">
     <div></div>
     <div></div>
@@ -295,13 +302,14 @@
 </div>
 
 <div id="mainDiv" class="jumbotron jumbotron-fluid text-center cover mb-0"
-     style="margin-bottom: 0px;visibility: hidden;opacity: 0;transition: visibility 0s, opacity 0.5s linear;background-color: #006747;">
+     style="margin-bottom: 0px;visibility: hidden;opacity: 0;transition: visibility 0s, opacity 0.5s linear;background-color: #05386B;">
     <div class="contianer container-fluid">
 
-        <nav style="background-color: #006747;font-weight: 700;"
+        <nav style="background-color: #05386B;font-weight: 700;"
              class="navbar navbar-expand-lg fixed-top text-center hover-zoom"
         >
-            <a class="navbar-brand js-scroll-trigger text-light" style="text-decoration: none;" href="{% url 'del-home' %}">Scrap</a>
+            <a class="navbar-brand js-scroll-trigger text-light" style="text-decoration: none;"
+               href="{% url 'del-home' %}">Scrap.</a>
             <button class="navbar-toggler text-white"
                     type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse"
@@ -354,52 +362,40 @@
                 </ul>
             </div>
         </nav>
-        {% if messages %}
-            {% for message in messages %}
-                <div class="page-section">
-                    <div class="container">
-                        <h5>{{ message }}</h5>
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
+
         <br>
         {% block content %}{% endblock content %}
 
-        <footer class="footer text-center text-white-50">
-            <div class="container">
-                <div class="row">
-                    <!-- Footer Location-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Location</h4>
-                        <p class="lead mb-0">
-                            14307 Wedgewood CT 202
-                            <br/>
-                            Tampa, FL 33613
-                        </p>
-                    </div>
-                    <!-- Footer Social Icons-->
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <h4 class="text-uppercase mb-4">Around the Web</h4>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                                class="fab fa-fw fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i
-                                class="fab fa-fw fa-linkedin-in"></i></a>
-                        <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
-                    </div>
-                    <!-- Footer About Text-->
-                    <div class="col-lg-4">
-                        <h4 class="text-uppercase mb-4">About App</h4>
-                        <p class="lead mb-0">
-                            This is an application by a bull for a bull.
-                        </p>
+       <div class="container-fluid">
+            <footer class="text-light">
+                <div class="row my-5 justify-content-center py-5">
+                    <div class="col-11">
+                        <div class="row ">
+                            <div class="col-xl-8 col-md-4 col-sm-4 col-12 my-auto mx-auto a">
+                                <h3 class="text-light mb-md-0 mb-5 bold-text">Scrap.</h3>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                                <h6 class="mb-3 mb-lg-4 bold-text "><b>MENU</b></h6>
+                                <ul class="list-unstyled">
+                                    <li><a style="text-decoration: none;" href="{% url 'del-home' %}">Home</a></li>
+                                    <li><a style="text-decoration: none;" href="{% url 'post-create' %}">Sell</a></li>
+                                    <li><a style="text-decoration: none;" href="{% url 'profile' %}">Profile</a></li>
+                                    <li><a style="text-decoration: none;" href="{% url 'del-about' %}">About Us</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                                <h6 class="mb-3 mb-lg-4 text-light bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>
+                                <p class="mb-1">14307 Wedgewood CT</p>
+                                <p class="mb-1">APT 202</p>
+                                <p class="mb-1">Tampa, FL</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © 2021</small></div>
+            <div class="container"><small>© Scrap. All Rights Reserved. 2021</small></div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">
@@ -410,13 +406,21 @@
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script>
+    $(document).ready(function () {
+        jQuery.noConflict();
+        $("#myModal").modal('show');
+    });
+</script>
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 <script src="https://unpkg.com/infinite-scroll@4/dist/infinite-scroll.pkgd.min.js"></script>
 <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
+
 <script>
     /*!
 Waypoints - 4.0.1

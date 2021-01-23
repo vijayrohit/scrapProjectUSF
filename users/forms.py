@@ -17,4 +17,6 @@ class UserRegisterForm(UserCreationForm):
         username = self.cleaned_data.get('username')
         if email and User.objects.filter(email=email).exclude(username=username).exists():
             raise forms.ValidationError(u'Email address is already in use. Please go ahead and login using it.')
+        if not email.endswith('.edu'):
+            raise forms.ValidationError(u'Please use your school issued Email ID, which ends with .edu')
         return email
