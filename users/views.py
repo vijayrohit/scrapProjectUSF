@@ -40,7 +40,7 @@ def register(request):
             mail_subject = 'Verify your Email'
             message = render_to_string('users/acc_activate_email.html', {
                 'user': user,
-                'domain': "scrap.com",
+                'domain': "scrap.rohitpantam.com",
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),
             })
