@@ -1,96 +1,129 @@
 {% extends "delivery/base.html" %}
 {% load static %}
 {% block content %}
+    <div class="row align-items-center h-100">
+        <!--Grid column-->
+        <div class="col-md-5 wow fadeInRight" data-wow-delay="0.2s"
+             style=""><img
+                src="https://drive.google.com/uc?export=view&id=1Z4WJRth91CY80KMxgBlbHiUhu45fFxnE" alt=""
+                class="img-fluid">
+        </div>
+        <!--Grid column-->
+
+        <div class="col-md-7 wow fadeInLeft" data-wow-delay="0.2s" style="">
+            <h1 class="mb-4">Scrap.</h1>
+            <h5>Don't need it? <b> Sell it to a Student!</b></h5>
+            <h5>Need something? <b>Buy from a Student.</b></h5>
+            <p class="">Your scrap can be someone else's treasure! Only a student can understand a student!</p>
+        </div>
+    </div>
+    <!--Grid column-->
+    <!--Grid column-->
+
+
+
     <section class="text-center text-dark dark-grey-text mb-5">
-
-        <!-- Masthead Heading-->
-
-        <h2 class="text-white">Marketplace</h2>
         {% if messages %}
-                {% for message in messages %}
-                    {% if message.tags == 'success' %}
-                <div class="container">
-                    <div class="row">
-                        <div class="modal fade" id="myModal">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="">
-                                            <span>×</span>
-                                        </button>
-                                    </div>
+            {% for message in messages %}
+                {% if message.tags == 'success' %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="">
+                                                <span>×</span>
+                                            </button>
+                                        </div>
 
-                                    <div class="modal-body">
+                                        <div class="modal-body">
 
-                                        <div class="thank-you-pop">
-                                            <i class="material-icons md-48 mb-3"s>sentiment_very_satisfied</i>
-                                            <h1>Thank You!</h1>
-                                            <p>Please check your email and verify your email id.</p>
+                                            <div class="thank-you-pop">
+                                                <i class="material-icons md-48 mb-3" s>sentiment_very_satisfied</i>
+                                                <h1>Thank You!</h1>
+                                                <p>Please check your email and verify your email id.</p>
+                                            </div>
+
                                         </div>
 
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                    {% endif %}
+                {% endif %}
             {% endfor %}
-            {% endif %}
-        <div class="infinite-container">
-            {% for result in posts %}
-                <section class="infinite-item search-result-item text-left">
-
-                    <a class="image-link" href="{% url 'post-detail' result.id %}"><img class="image"
-                                                                                        src="
+        {% endif %}
 
 
+        <div class="row">
+            <div class="col-12 col-sm-3">
+                <div class="card bg-light mb-3" id="">
+                    <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i>
+                        Categories
+                    </div>
+                    <ul class="list-group category_block">
+                        <li class="list-group-item"><a href="category.html">Cras justo odio</a></li>
+                        <li class="list-group-item"><a href="category.html">Dapibus ac facilisis in</a></li>
+                        <li class="list-group-item"><a href="category.html">Morbi leo risus</a></li>
+                        <li class="list-group-item"><a href="category.html">Porta ac consectetur ac</a></li>
+                        <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li>
+                    </ul>
+                </div>
+            </div>
 
+            <div class="col">
 
+                <h2 class="text-dark text-left">Recently Added</h2>
+                <div class="infinite-container row ml-3">
+                    {% for result in posts %}
+                        <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch infinite-item mb-3 mt-3"
+                             style="border: none;">
+                            <div class="card border-0 shadow">
+                                <img class="card-img-top" src="{{ MEDIA_URL }}{{ result.images.url }}"
+                                     alt="Card image cap">
+                                <div class="card-body flex-fill text-left">
+                                    <h4 class="card-title text-dark"><a
+                                            style="text-decoration: none;color: #1c1f23;font-weight: 700;"
+                                            href="{% url 'post-detail' result.id %}"
+                                            title="View Product">{{ result.title }}</a>
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="block mb-0">${{ result.price }}</p>
+                                            <span class="badge badge-dark mb-0">{{ result.category }}</span>
+                                            {% if result.condition == 'NEW' %}
+                                                <span class="badge badge-success mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            {% if result.condition == 'LIKE NEW' %}
+                                                <span class="badge badge-primary mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            {% if result.condition == 'FAIR' %}
+                                                <span class="badge badge-secondary mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            {% if result.condition == 'ACCEPTABLE' %}
+                                                <span class="badge badge-warning mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            {% if result.condition == 'POOR' %}
+                                                <span class="badge badge-danger mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            <p class="mt-1 mb-0 pd-0 text-muted text-right"
+                                               style="font-size: small;"><span
+                                                    class="material-icons mt-1">location_on</span>{{ result.zip }}
+                                            </p>
+                                        </div>
 
-
-
-
-
-
-                                                                                                {{ MEDIA_URL }}{{ result.images.url }}">
-                    </a>
-                    <div class="search-result-item-body">
-                        <div class="row">
-
-                            <div class="col-sm-9">
-
-                                <h4 class="search-result-item-heading">{{ result.title }}</h4>
-                                <p class="info">{{ result.zip }}</p>
-                                <p class="description"><label
-                                        style="font-weight: 700;">Description:</label> {{ result.description }}
-                                </p>
-                                <span class="badge badge-dark">{{ result.category }}</span>
-                                {% if result.condition == 'NEW' %}
-                                    <span class="badge badge-success"> {{ result.condition }}</span>
-                                {% endif %}
-                                {% if result.condition == 'LIKE NEW' %}
-                                    <span class="badge badge-primary"> {{ result.condition }}</span>
-                                {% endif %}
-                                {% if result.condition == 'FAIR' %}
-                                    <span class="badge badge-secondary"> {{ result.condition }}</span>
-                                {% endif %}
-                                {% if result.condition == 'ACCEPTABLE' %}
-                                    <span class="badge badge-warning"> {{ result.condition }}</span>
-                                {% endif %}
-                                {% if result.condition == 'POOR' %}
-                                    <span class="badge badge-danger"> {{ result.condition }}</span>
-                                {% endif %}
-                            </div>
-                            <div class="col-sm-3 text-align-center">
-                                <p class="value3 mt-sm">${{ result.price }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
         </div>
+        </div>
+
 
 
 

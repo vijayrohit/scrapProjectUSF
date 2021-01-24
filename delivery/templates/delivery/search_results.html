@@ -1,58 +1,85 @@
 {% extends 'delivery/base.html' %}
 {% block content %}
     <section class="text-center text-dark dark-grey-text mb-5">
-    <h1 class="text-light">Search Results</h1>
-        <div class="infinite-container">
-        {% for result in page_obj %}
-            <section class="infinite-item search-result-item text-left">
-
-                <a class="image-link" href="{% url 'post-detail' result.id %}"><img class="image"
-                                                                                    src="
-
-
-
-
-
-                                                                                            {{ MEDIA_URL }}{{ result.images.url }}">
-                </a>
-                <div class="search-result-item-body">
-                    <div class="row">
-
-                        <div class="col-sm-9">
-
-                            <h4 class="search-result-item-heading">{{ result.title }}</h4>
-                            <p class="info">{{ result.zip }}</p>
-                            <p class="description"><label
-                                    style="font-weight: 700;">Description:</label> {{ result.description }}
-                            </p>
-                            <span class="badge badge-dark">{{ result.category }}</span>
-                            {% if result.condition == 'NEW' %}
-                                <span class="badge badge-success"> {{ result.condition }}</span>
-                            {% endif %}
-                            {% if result.condition == 'LIKE NEW' %}
-                                <span class="badge badge-primary"> {{ result.condition }}</span>
-                            {% endif %}
-                            {% if result.condition == 'FAIR' %}
-                                <span class="badge badge-secondary"> {{ result.condition }}</span>
-                            {% endif %}
-                            {% if result.condition == 'ACCEPTABLE' %}
-                                <span class="badge badge-warning"> {{ result.condition }}</span>
-                            {% endif %}
-                            {% if result.condition == 'POOR' %}
-                                <span class="badge badge-danger"> {{ result.condition }}</span>
-                            {% endif %}
-                        </div>
-                        <div class="col-sm-3 text-align-center">
-                            <p class="value3 mt-sm">${{ result.price }}</p>
-                        </div>
+        <h1 class="">Search Results</h1>
+        <div class="row">
+            <div class="col-12 col-sm-3">
+                <div class="card bg-light mb-3">
+                    <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories
                     </div>
+                    <ul class="list-group category_block">
+                        <li class="list-group-item"><a href="category.html">Cras justo odio</a></li>
+                        <li class="list-group-item"><a href="category.html">Dapibus ac facilisis in</a></li>
+                        <li class="list-group-item"><a href="category.html">Morbi leo risus</a></li>
+                        <li class="list-group-item"><a href="category.html">Porta ac consectetur ac</a></li>
+                        <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li>
+                    </ul>
                 </div>
-            </section>
-        {% endfor %}
+            </div>
+
+
+            <div class="col">
+
+
+                <div class="infinite-container row ml-3">
+                    {% for result in page_obj %}
+                        <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch infinite-item mb-3 mt-3"
+                             style="border: none;">
+                            <div class="card border-0 shadow">
+                                <img class="card-img-top" src="{{ MEDIA_URL }}{{ result.images.url }}"
+                                     alt="Card image cap">
+                                <div class="card-body flex-fill text-left">
+                                    <h4 class="card-title text-dark"><a
+                                            style="text-decoration: none;color: #1c1f23;font-weight: 700;"
+                                            href="{% url 'post-detail' result.id %}"
+                                            title="View Product">{{ result.title }}</a>
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="block mb-0">${{ result.price }}</p>
+                                            <span class="badge badge-dark mb-0">{{ result.category }}</span>
+                                            {% if result.condition == 'NEW' %}
+                                                <span class="badge badge-success mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            {% if result.condition == 'LIKE NEW' %}
+                                                <span class="badge badge-primary mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            {% if result.condition == 'FAIR' %}
+                                                <span class="badge badge-secondary mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            {% if result.condition == 'ACCEPTABLE' %}
+                                                <span class="badge badge-warning mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            {% if result.condition == 'POOR' %}
+                                                <span class="badge badge-danger mb-0"> {{ result.condition }}</span>
+                                            {% endif %}
+                                            <p class="mt-1 mb-0 pd-0 text-muted text-right"
+                                               style="font-size: small;"><span
+                                                    class="material-icons mt-1">location_on</span>{{ result.zip }}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
         </div>
 
 
 
+
+        {% if page_obj.has_next %}
+            <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
+        {% endif %}
+        <div class="d-flex justify-content-center" style="display:none;">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
         {% if page_obj.has_next %}
             <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
         {% endif %}

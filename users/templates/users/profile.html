@@ -1,11 +1,10 @@
 {% extends 'delivery/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <section class="text-light dark-grey-text mb-5">
-        <div class="container">
+    <section class="dark-grey-text mb-5">
             <p>{{ user.username }}</p>
             <h1>Your Ads</h1>
-            <table class="table table-hover text-light" style="border: white; border-style: solid;border-radius: 65px;border-width: thin;">
+            <table class="table table-hover" style="border: #1c1f23; border-style: solid;border-radius: 65px;border-width: thin;">
                 <thead>
                 <tr>
                     <th>Title</th>
@@ -29,7 +28,6 @@
                 {% endfor %}
                 </tbody>
             </table>
-        </div>
     </section>
 
 {% endblock content %}

@@ -1,16 +1,16 @@
 {% extends 'delivery/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <section class="text-light dark-grey-text mb-5">
+    <section class="dark-grey-text mb-5">
                 <!-- About Section Heading-->
 
 
-                    <form class="col-lg-6 offset-lg-3" method="POST" style="border: white; border-style: solid;border-radius: 25px;border-width: thin;">
+                    <form class="col-lg-6 offset-lg-3" method="POST" style="border: #1c1f23; border-style: solid;border-radius: 25px;border-width: thin;">
                         <h1 class="mb-3 mt-3">Login</h1>
                         {% csrf_token %}
 
                         {{ form|crispy }}
-                        <button class="btn btn-xl btn-outline-light mb-3" type="submit"> Login</button>
+                        <button class="btn btn-xl btn-outline-dark mb-3" type="submit"> Login</button>
 
                     </form>
                     <p>Forgot Username or Password? <a href="{% url 'password_reset' %}" style="color: gainsboro;"> Click here!</a>

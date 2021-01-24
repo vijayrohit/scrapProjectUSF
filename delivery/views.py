@@ -25,7 +25,7 @@ def RecentPosts(request):
 
 class PostListView(ListView):
     model = Post
-    paginate_by = 2
+    paginate_by = 3
     template_name = 'delivery/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-datePosted']
