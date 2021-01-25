@@ -1,0 +1,184 @@
+{% extends 'delivery/base.html' %}
+{% load thumbnail %}
+{% block content %}
+    <section class="text-center text-dark dark-grey-text mb-5">
+        <h1 class="">{{ categoryQuery }}</h1>
+        <button class="btn btn-outline-dark d-block d-sm-none d-none d-sm-block d-md-none" id="menu-toggle">Filters
+        </button>
+        <div class="row">
+
+            <div class="col align-items-center" style="padding-right: 0px;">
+                <div class="d-flex" id="wrapper">
+
+                    <!-- Sidebar -->
+                    <div class="bg-light border-right" id="sidebar-wrapper">
+                        <div class="sidebar-heading d-none d-sm-block d-sm-none d-md-block">Filters</div>
+                        <div class="list-group list-group-flush text-left">
+                            <section class="ml-5">
+
+                                <!-- Section: Condition -->
+                                <section class="mb-4">
+
+                                    <h6 class="font-weight-bold mb-3">Condition</h6>
+
+                                    <div class="form-check pl-0 mb-3">
+                                        <input type="checkbox" class="form-check-input filled-in" id="new">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="new">New</label>
+                                    </div>
+                                    <div class="form-check pl-0 mb-3">
+                                        <input type="checkbox" class="form-check-input filled-in" id="used">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="used">Used</label>
+                                    </div>
+                                    <div class="form-check pl-0 mb-3">
+                                        <input type="checkbox" class="form-check-input filled-in" id="collectible">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="collectible">Collectible</label>
+                                    </div>
+                                    <div class="form-check pl-0 mb-3 pb-1">
+                                        <input type="checkbox" class="form-check-input filled-in" id="renewed">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="renewed">Renewed</label>
+                                    </div>
+
+                                </section>
+                                <!-- Section: Condition -->
+
+                                <!-- Section: Price -->
+                                <section class="mb-4">
+
+                                    <h6 class="font-weight-bold mb-3">Price</h6>
+
+                                    <div class="form-check pl-0 mb-3">
+                                        <input type="radio" class="form-check-input" id="under25"
+                                               name="materialExampleRadios" value="cheap">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="under25">Under $25</label>
+                                    </div>
+                                    <div class="form-check pl-0 mb-3">
+                                        <input type="radio" class="form-check-input" id="2550"
+                                               name="materialExampleRadios" value="medium">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="2550">$25
+                                            to $50</label>
+                                    </div>
+                                    <div class="form-check pl-0 mb-3">
+                                        <input type="radio" class="form-check-input" id="50100"
+                                               name="materialExampleRadios" value="costly">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="50100">$50 to $100</label>
+                                    </div>
+                                    <div class="form-check pl-0 mb-3">
+                                        <input type="radio" class="form-check-input" id="100200"
+                                               name="materialExampleRadios" value="extreme">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="100200">$100 to $200</label>
+                                    </div>
+                                    <div class="form-check pl-0 mb-3">
+                                        <input type="radio" class="form-check-input" id="200above"
+                                               name="materialExampleRadios" value="super">
+                                        <label class="form-check-label small text-uppercase card-link-secondary"
+                                               for="200above">$200 & Above</label>
+                                    </div>
+                                    <form>
+                                        <div class="d-flex align-items-center mt-4 pb-1">
+                                            <div class="md-form md-outline my-0">
+                                                <input id="from" type="text" class="form-control mb-0">
+                                                <label for="form">$ Min</label>
+                                            </div>
+                                            <p class="px-2 mb-0 text-muted"> - </p>
+                                            <div class="md-form md-outline my-0">
+                                                <input id="to" type="text" class="form-control mb-0">
+                                                <label for="to">$ Max</label>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </section>
+                                <!-- Section: Price -->
+
+
+                            </section>
+                            <!-- Section: Filters -->
+                        </div>
+                    </div>
+                    <!-- /#sidebar-wrapper -->
+
+                    <!-- Page Content -->
+                    <div id="page-content-wrapper">
+
+                        {% if page_obj %}
+                            <div class="infinite-container row ml-3">
+
+                                {% for result in page_obj %}
+                                    <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch infinite-item mb-3 mt-3"
+                                         style="border: none;">
+                                        <div class="card border-0 shadow">
+                                            <img class="card-img-top" src="{{ result.images|thumbnail_url:'image' }}"
+                                                 alt="Card image cap">
+                                            <div class="card-body flex-fill text-left">
+                                                <h4 class="card-title text-dark"><a
+                                                        style="text-decoration: none;color: #1c1f23;font-weight: 700;"
+                                                        href="{% url 'post-detail' result.id %}"
+                                                        title="View Product">{{ result.title }}</a>
+                                                </h4>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <p class="block mb-0">${{ result.price }}</p>
+                                                        <span class="badge badge-dark mb-0">{{ result.category }}</span>
+                                                        {% if result.condition == 'NEW' %}
+                                                            <span class="badge badge-success mb-0"> {{ result.condition }}</span>
+                                                        {% endif %}
+                                                        {% if result.condition == 'LIKE NEW' %}
+                                                            <span class="badge badge-primary mb-0"> {{ result.condition }}</span>
+                                                        {% endif %}
+                                                        {% if result.condition == 'FAIR' %}
+                                                            <span class="badge badge-secondary mb-0"> {{ result.condition }}</span>
+                                                        {% endif %}
+                                                        {% if result.condition == 'ACCEPTABLE' %}
+                                                            <span class="badge badge-warning mb-0"> {{ result.condition }}</span>
+                                                        {% endif %}
+                                                        {% if result.condition == 'POOR' %}
+                                                            <span class="badge badge-danger mb-0"> {{ result.condition }}</span>
+                                                        {% endif %}
+                                                        <p class="mt-1 mb-0 pd-0 text-muted text-right"
+                                                           style="font-size: small;"><span
+                                                                class="material-icons mt-1">location_on</span>{{ result.zip }}
+                                                        </p>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                    <a class="infinite-more-link"
+                                       href="?category={{ categoryQuery }}&page={{ page_obj.next_page_number }}"></a>
+                                    <div class="d-flex justify-content-center" style="display:none;">
+                                        <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        {% else %}
+                            <span class="material-icons text-center">mood_bad</span>
+                            <p class="text-center text-dark">No results found!</p>
+                        {% endif %}
+
+                    </div>
+                    <!-- /#page-content-wrapper -->
+
+                </div>
+
+            </div>
+
+
+        </div>
+        </div>
+
+    </section>
+{% endblock content %}

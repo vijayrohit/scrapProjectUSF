@@ -1,5 +1,6 @@
 {% extends "delivery/base.html" %}
 {% load static %}
+{% load thumbnail %}
 {% block content %}
     <div class="row align-items-center h-100">
         <!--Grid column-->
@@ -13,8 +14,8 @@
         <div class="col-md-7 wow fadeInLeft" data-wow-delay="0.2s" style="">
             <h1 class="mb-4">Scrap.</h1>
             <h5>Don't need it? <b> Sell it to a Student!</b></h5>
-            <h5>Need something? <b>Buy from a Student.</b></h5>
-            <p class="">Your scrap can be someone else's treasure! Only a student can understand a student!</p>
+            <h5>Need something? <b>Buy it from a Student.</b></h5>
+            <p class="">Your scrap can be someone else's treasure!</p>
         </div>
     </div>
     <!--Grid column-->
@@ -56,71 +57,109 @@
             {% endfor %}
         {% endif %}
 
-
+        <h2 class="text-dark">Marketplace</h2>
         <div class="row">
-            <div class="col-12 col-sm-3">
-                <div class="card bg-light mb-3" id="">
-                    <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i>
-                        Categories
+
+            <div class="col align-items-center" style="padding-right: 0px;">
+                <div class="d-flex" id="wrapper">
+
+                    <!-- Sidebar -->
+                    <div class="bg-light border-right d-none d-sm-block d-sm-none d-md-block" id="sidebar-wrapper">
+                        <div class="sidebar-heading d-none d-sm-block d-sm-none d-md-block">Categories</div>
+                        <div class="list-group list-group-flush">
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=BOOKS">Books</a>
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=CLOTHING">Clothing</a>
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=FURNITURE">Furniture</a>
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=HOME_APPLIANCES">Home
+                                Appliances</a>
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=LAPTOPS">Laptops</a>
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=SMARTPHONES">Smart Phones</a>
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=SPORTS/OUTDOOR">Sports and
+                                Outdoor</a>
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=TABLETS">Tablets</a>
+                            <a
+                                    class="list-group-item list-group-item-action bg-light"
+                                    href="{% url 'category-view' %}?category=OTHER">Others</a>
+                        </div>
                     </div>
-                    <ul class="list-group category_block">
-                        <li class="list-group-item"><a href="category.html">Cras justo odio</a></li>
-                        <li class="list-group-item"><a href="category.html">Dapibus ac facilisis in</a></li>
-                        <li class="list-group-item"><a href="category.html">Morbi leo risus</a></li>
-                        <li class="list-group-item"><a href="category.html">Porta ac consectetur ac</a></li>
-                        <li class="list-group-item"><a href="category.html">Vestibulum at eros</a></li>
-                    </ul>
-                </div>
-            </div>
+                    <!-- /#sidebar-wrapper -->
 
-            <div class="col">
+                    <!-- Page Content -->
+                    <div id="page-content-wrapper">
 
-                <h2 class="text-dark text-left">Recently Added</h2>
-                <div class="infinite-container row ml-3">
-                    {% for result in posts %}
-                        <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch infinite-item mb-3 mt-3"
-                             style="border: none;">
-                            <div class="card border-0 shadow">
-                                <img class="card-img-top" src="{{ MEDIA_URL }}{{ result.images.url }}"
-                                     alt="Card image cap">
-                                <div class="card-body flex-fill text-left">
-                                    <h4 class="card-title text-dark"><a
-                                            style="text-decoration: none;color: #1c1f23;font-weight: 700;"
-                                            href="{% url 'post-detail' result.id %}"
-                                            title="View Product">{{ result.title }}</a>
-                                    </h4>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="block mb-0">${{ result.price }}</p>
-                                            <span class="badge badge-dark mb-0">{{ result.category }}</span>
-                                            {% if result.condition == 'NEW' %}
-                                                <span class="badge badge-success mb-0"> {{ result.condition }}</span>
-                                            {% endif %}
-                                            {% if result.condition == 'LIKE NEW' %}
-                                                <span class="badge badge-primary mb-0"> {{ result.condition }}</span>
-                                            {% endif %}
-                                            {% if result.condition == 'FAIR' %}
-                                                <span class="badge badge-secondary mb-0"> {{ result.condition }}</span>
-                                            {% endif %}
-                                            {% if result.condition == 'ACCEPTABLE' %}
-                                                <span class="badge badge-warning mb-0"> {{ result.condition }}</span>
-                                            {% endif %}
-                                            {% if result.condition == 'POOR' %}
-                                                <span class="badge badge-danger mb-0"> {{ result.condition }}</span>
-                                            {% endif %}
-                                            <p class="mt-1 mb-0 pd-0 text-muted text-right"
-                                               style="font-size: small;"><span
-                                                    class="material-icons mt-1">location_on</span>{{ result.zip }}
-                                            </p>
+
+                        <div class="infinite-container row ml-3">
+                            {% for result in posts %}
+                                <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch infinite-item mb-3 mt-3"
+                                     style="border: none;">
+                                    <div class="card border-0 shadow">
+                                        <img class="card-img-top" src="{{ result.images|thumbnail_url:'image' }}"
+                                             alt="Card image cap">
+                                        <div class="card-body flex-fill text-left">
+                                            <h4 class="card-title text-dark"><a
+                                                    style="text-decoration: none;color: #1c1f23;font-weight: 700;"
+                                                    href="{% url 'post-detail' result.id %}"
+                                                    title="View Product">{{ result.title }}</a>
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <p class="block mb-0">${{ result.price }}</p>
+                                                    <span class="badge badge-dark mb-0">{{ result.category }}</span>
+                                                    {% if result.condition == 'NEW' %}
+                                                        <span class="badge badge-success mb-0"> {{ result.condition }}</span>
+                                                    {% endif %}
+                                                    {% if result.condition == 'LIKE NEW' %}
+                                                        <span class="badge badge-primary mb-0"> {{ result.condition }}</span>
+                                                    {% endif %}
+                                                    {% if result.condition == 'FAIR' %}
+                                                        <span class="badge badge-secondary mb-0"> {{ result.condition }}</span>
+                                                    {% endif %}
+                                                    {% if result.condition == 'ACCEPTABLE' %}
+                                                        <span class="badge badge-warning mb-0"> {{ result.condition }}</span>
+                                                    {% endif %}
+                                                    {% if result.condition == 'POOR' %}
+                                                        <span class="badge badge-danger mb-0"> {{ result.condition }}</span>
+                                                    {% endif %}
+                                                    <p class="mt-1 mb-0 pd-0 text-muted text-right"
+                                                       style="font-size: small;"><span
+                                                            class="material-icons mt-1">location_on</span>{{ result.zip }}
+                                                    </p>
+                                                </div>
+
+                                            </div>
                                         </div>
-
                                     </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
+                        <div class="collapse" id="sidebarCollapse">
+
+                        </div>
+
+                    </div>
+                    <!-- /#page-content-wrapper -->
+
                 </div>
+
             </div>
+
+
         </div>
         </div>
 
@@ -129,12 +168,13 @@
 
         {% if page_obj.has_next %}
             <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
-        {% endif %}
-        <div class="d-flex justify-content-center" style="display:none;">
-            <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+            <div class="d-flex justify-content-center" style="display:none;">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
-        </div>
+
+        {% endif %}
 
     </section>
 

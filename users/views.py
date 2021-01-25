@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
@@ -66,3 +66,27 @@ def activate(request, uidb64, token):
         return render(request, 'users/register_complete.html')
     else:
         return HttpResponse('Activation link is invalid!')
+
+# create a function to resolve email to username
+def get_user(email):
+    try:
+        return User.objects.get(email=email.lower())
+    except User.DoesNotExist:
+        return None
+
+# create a view that authenticate user with email
+def email_login_view(request):
+    email = request.POST['email']
+    password = request.POST['password']
+    username = get_user(email)
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        if user.is_active:
+            login(request, user)
+            # Redirect to a success page.
+        else:
+            # Return a 'disabled account' error message
+            pass
+    else:
+        # Return an 'invalid login' error message.
+        pass

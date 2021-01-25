@@ -13,14 +13,24 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+
 from .models import Post
 
 
 
 
+@login_required
+def categoryView(request):
+    categoryQuery = request.GET.get('category', 1)
+    categoryList = Post.objects.get_queryset().order_by('id').filter(category=categoryQuery)
+    paginator = Paginator(categoryList, 3)
+    page_number = request.GET.get('page', 1)
+    page_obj = paginator.page(page_number)
+    return render(request, 'delivery/category_view.html', {'page_obj': page_obj, 'categoryQuery': categoryQuery})
 
-def RecentPosts(request):
-    pass
+
+
 
 
 class PostListView(ListView):
@@ -29,7 +39,6 @@ class PostListView(ListView):
     template_name = 'delivery/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-datePosted']
-
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
@@ -72,28 +81,44 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
+def filterApply(request):
+    prices = {
+        '0': [0,24],
+        '1': [0,49],
+        '2': [50,100],
+        '3': [100,200],
+        '4': [200]
+    }
+    products = Post.objects.all()
+    priceQuery = request.POST.get('priceQuery')
 
 
-@login_required()
+
 def search(request):
+    prices = {
+        '0': [0, 24],
+        '1': [0, 49],
+        '2': [50, 100],
+        '3': [100, 200],
+        '4': [200]
+    }
     if not request.method == 'POST':
         if 'user_query' in request.session:
             request.POST = request.session['user_query']
             request.method = 'POST'
             searchQuery = request.POST.get('user_query')
-            queryResult = Post.objects.filter(title__icontains=searchQuery)
-            paginator = Paginator(queryResult, 5)
+            queryResult = Post.objects.get_queryset().order_by('id').filter(title__icontains=searchQuery)
+            paginator = Paginator(queryResult, 3)
             page_number = request.GET.get('page', 1)
             page_obj = paginator.page(page_number)
             return render(request, 'delivery/search_results.html', {'page_obj': page_obj})
     if request.method == 'POST':
         searchQuery = request.POST.get('user_query')
         request.session['user_query'] = request.POST
-        queryResult = Post.objects.filter(title__icontains=searchQuery)
-        paginator = Paginator(queryResult, 5)
+        queryResult = Post.objects.get_queryset().order_by('id').filter(title__icontains=searchQuery)
+        paginator = Paginator(queryResult, 3)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.page(page_number)
-        print(page_number)
         return render(request, 'delivery/search_results.html', {'page_obj': page_obj})
 
 

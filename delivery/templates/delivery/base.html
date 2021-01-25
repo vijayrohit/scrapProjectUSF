@@ -304,6 +304,53 @@
         .row {
             margin-right: 0px;
         }
+
+        #wrapper {
+            overflow-x: hidden;
+        }
+
+        #sidebar-wrapper {
+            min-height: 100vh;
+            margin-left: -15rem;
+            -webkit-transition: margin .25s ease-out;
+            -moz-transition: margin .25s ease-out;
+            -o-transition: margin .25s ease-out;
+            transition: margin .25s ease-out;
+        }
+
+        #sidebar-wrapper .sidebar-heading {
+            padding: 0.875rem 1.25rem;
+            font-size: 1.2rem;
+        }
+
+        #sidebar-wrapper .list-group {
+            width: 15rem;
+        }
+
+        #page-content-wrapper {
+            min-width: 100vw;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: 0;
+        }
+
+        @media (min-width: 768px) {
+            #sidebar-wrapper {
+                margin-left: 0;
+            }
+
+            #page-content-wrapper {
+                min-width: 0;
+                width: 100%;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                margin-left: -15rem;
+            }
+        }
+
+
     </style>
 
     <head>
@@ -346,7 +393,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
 
-                <ul class="navbar-nav ml-auto text-white">
+                <ul class="navbar-nav ml-auto text-white" style="white-space: nowrap;">
 
                     {% if user.is_authenticated %}
 
@@ -356,12 +403,53 @@
                         <li class="nav-item mx-0 mx-lg-1"><a
                                 class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light"
                                 href="{% url 'post-create' %}">Sell</a></li>
+                        <li class="nav-item dropdown mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-toggle"
+                               href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                Categories
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right align-items-center text-center"
+                                aria-labelledby="navbarDropdownMenuLink" style="transition: all 0.4s ease;">
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=BOOKS">Books</a></li>
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=CLOTHING">Clothing</a></li>
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=FURNITURE">Furniture</a></li>
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=HOME_APPLIANCES">Home
+                                        Appliances</a></li>
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=LAPTOPS">Laptops</a></li>
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=SMARTPHONES">Smart Phones</a></li>
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=SPORTS/OUTDOOR">Sports and
+                                        Outdoor</a></li>
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=TABLETS">Tablets</a></li>
+                                <li>
+                                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light dropdown-item"
+                                       href="{% url 'category-view' %}?category=OTHER">Others</a></li>
+                            </ul>
+
+                        </li>
+
                         <li class="nav-item mx-0 mx-lg-1"><a
                                 class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light"
                                 href="{% url 'profile' %}">Profile</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a
                                 class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light"
-                                href="{% url 'logout' %}">Logout</a></li>
+                                href="{% url 'logout' %}">Sign Out</a></li>
                         {% if user.is_staff %}
                             <li class="nav-item mx-0 mx-lg-1"><a
                                     class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger btn btn-outline-light"
@@ -762,6 +850,12 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
         }
 
     });
+
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
 </script>
 </body>
 </html>

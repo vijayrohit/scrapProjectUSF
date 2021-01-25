@@ -8,7 +8,7 @@ from django.utils.deconstruct import deconstructible
 
 class Post(models.Model):
     categoryChoices = [
-        ('HOME APPLIANCES','Home Appliances'),
+        ('HOME_APPLIANCES','Home Appliances'),
         ('SMARTPHONES', 'Smart Phones'),
         ('LAPTOPS','Laptops'),
         ('TABLETS','Tablets'),

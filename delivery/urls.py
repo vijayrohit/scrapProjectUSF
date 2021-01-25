@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
+from django_filters.views import FilterView
 
 from .views import (
     PostListView,
@@ -18,4 +19,5 @@ urlpatterns = [
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('about/', views.about, name='del-about'),
     path('search_results/', views.search, name='searchBar'),
+    path('category_url', views.categoryView, name='category-view'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
