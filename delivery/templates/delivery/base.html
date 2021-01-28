@@ -1,15 +1,14 @@
 {% load static %}
 <html>
 <head>
-    <title>Scrap</title>
+    <title>UniDeals | Find used products in your University</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description"
-          content="Experienced Developer with a demonstrated history of working in the IT industry. Skilled in Python, SQL and C++. Strong problem-solving skills. Pursuing Master of Science in Computer Science from the University of South Florida. Hackerrank Certified Problem Solver and Python Programmer.">
+    <meta name="description" content="">
     <meta name="keywords"
-          content="Student, student, preowned, used, cheap, Cheap, Used, Preowned, USF, University, Rohit, Pantam, rohitpantam, pantam, usf, software, engineer, python, developer">
+          content="unideals, UNIdeals, uniDEALS, uniDeals, Student, student, preowned, used, cheap, Cheap, Used, Preowned, USF, University, Rohit, Pantam, rohitpantam, pantam, usf, software, engineer, python, developer">
     <meta name="author" content="Rohit Pantam">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -18,6 +17,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=B612:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
     <style>
         html {
             scroll-behavior: smooth;
@@ -118,7 +119,7 @@
             color: #1c1f23;
             text-decoration: none;
             font-family: 'B612', sans-serif;
-            padding-top: 65px;
+            padding-top: 40px;
         }
 
         .container {
@@ -350,6 +351,68 @@
             }
         }
 
+        .requiredField {
+            display: none;
+        }
+
+        .textInput {
+            border-radius: 30px;
+        }
+
+        #hint_id_password1 {
+            text-align: left;
+        }
+
+        #hint_id_password2 {
+            text-align: left;
+        }
+
+        #id_category {
+            border-radius: 30px;
+        }
+
+        .select {
+            border-radius: 30px;
+        }
+
+        .numberinput {
+            border-radius: 30px;
+        }
+
+        .form-control {
+            border-radius: 30px;
+        }
+
+        .clearablefileinput .form-control-file {
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .material-icons {
+            vertical-align: -6px; /*Change this to adjust the icon*/
+        }
+        .btn-outline-dark:hover{
+            background-color: #05386B;
+            color: #FFFFFF;
+        }
+        .btn-outline-dark{
+            color: #05386B;
+            border-color: #05386B;
+        }
 
     </style>
 
@@ -369,8 +432,9 @@
 
         <nav style="background-color: #05386B;font-weight: 700;"
              class="navbar navbar-expand-lg fixed-top text-center hover-zoom">
-            <a class="navbar-brand js-scroll-trigger text-light" style="text-decoration: none;"
-               href="{% url 'del-home' %}">Scrap.</a>
+            <a class="navbar-brand js-scroll-trigger text-light"
+               style="text-decoration: none;font-family: 'Hammersmith One', sans-serif;"
+               href="{% url 'del-home' %}">UniDeals</a>
             <button class="navbar-toggler text-white"
                     type="button" data-toggle="collapse" data-target="#navbarCollapse"
                     aria-controls="navbarCollapse"
@@ -378,11 +442,12 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="navbar-nav flex-grow-1 d-flex input-group">
-                <form class="form-inline flex-nowrap mx-0 mx-lg-auto rounded p-1" method="POST"
+                <form class="form-inline flex-nowrap mb-0 mx-0 mx-lg-auto rounded p-1" method="POST"
                       action="{% url 'searchBar' %}"
                       style="float: left;">
                     {% csrf_token %}
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                    <input class="form-control col-lg-12" type="search" placeholder="Search UniDeals"
+                           aria-label="Search"
                            name="user_query" value='{{ query }}'
                            style="border-bottom-right-radius: 0px; border-top-right-radius: 0px; border-top-left-radius: 30px; border-bottom-left-radius: 30px;">
                     <button class="btn btn-light my-2 my-sm-0"
@@ -476,7 +541,8 @@
                 <div class="col-11">
                     <div class="row ">
                         <div class="col-xl-8 col-md-4 col-sm-4 col-12 my-auto mx-auto a">
-                            <h3 class="text-light mb-md-0 mb-5 bold-text">Scrap.</h3>
+                            <h3 class="text-light mb-md-0 mb-5 bold-text"
+                                style="text-decoration: none;font-family: 'Hammersmith One', sans-serif;">UniDeals</h3>
                         </div>
                         <div class="col-xl-2 col-md-4 col-sm-4 col-12">
                             <h6 class="mb-3 mb-lg-4 bold-text "><b>MENU</b></h6>
@@ -498,7 +564,7 @@
             </div>
         </footer>
         <div class="copyright py-4 text-center text-white mb-0">
-            <div class="container"><small>© Scrap. All Rights Reserved. 2021</small></div>
+            <div class="container"><small>© UniDeals. All Rights Reserved. 2021</small></div>
         </div>
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
         <div class="scroll-to-top d-lg-none position-fixed">

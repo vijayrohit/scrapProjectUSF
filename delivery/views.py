@@ -13,7 +13,7 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
+import zipcodes
 
 from .models import Post
 
@@ -50,9 +50,41 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
 
     fields = ['title', 'category',  'condition', 'description', 'price', 'images', 'zip', 'email', 'name']
+    def get_form(self, form_class=None):
+        if form_class is None:
+            form_class = self.get_form_class()
 
+        form = super(PostCreateView, self).get_form(form_class)
+        form.fields['title'].widget = forms.TextInput(attrs={'placeholder': 'Title'})
+        form.fields['price'].widget = forms.NumberInput(attrs={'placeholder': 'Price'})
+        form.fields['description'].widget = forms.Textarea(attrs={'placeholder': 'Description'})
+        form.fields['zip'].widget = forms.TextInput(attrs={'placeholder': 'Zip'})
+        form.fields['email'].widget = forms.TextInput(attrs={'placeholder': self.request.user.email,'required': False})
+        form.fields['name'].widget = forms.TextInput(attrs={'placeholder': self.request.user.username,'required': False})
+        form.fields['email'].widget.render(name='email', value=self.request.user.email)
+
+        return form
     def form_valid(self, form):
         form.instance.userId = self.request.user
+        category = form.instance.category
+        zip = form.instance.zip
+        if form.instance.name == '':
+            form.instance.name = self.request.user.username
+        if form.instance.email == '':
+            form.instance.email = self.request.user.email
+
+        if category == '':
+            form.add_error('category',"Please select a category")
+            return super(PostCreateView, self).form_invalid(form)
+        try:
+            zipcodes.matching(zip)
+        except TypeError:
+            form.add_error('zip',"Please enter a valid zip")
+            return super(PostCreateView, self).form_invalid(form)
+        except ValueError:
+            form.add_error('zip',"Please enter a valid zip")
+            return super(PostCreateView, self).form_invalid(form)
+
         return super().form_valid(form)
 
 

@@ -6,15 +6,16 @@
         <!--Grid column-->
         <div class="col-md-5 wow fadeInRight" data-wow-delay="0.2s"
              style=""><img
-                src="https://drive.google.com/uc?export=view&id=1Z4WJRth91CY80KMxgBlbHiUhu45fFxnE" alt=""
+                src="https://drive.google.com/uc?export=view&id=19QDxmVGapS0kPVMhdwvydLgTNdaLQmVD" alt=""
                 class="img-fluid">
+
         </div>
         <!--Grid column-->
 
         <div class="col-md-7 wow fadeInLeft" data-wow-delay="0.2s" style="">
-            <h1 class="mb-4">Scrap.</h1>
+            <h1 class="mb-4" style="font-family: 'Hammersmith One', sans-serif;">UniDeals</h1>
             <h5>Don't need it? <b> Sell it to a Student!</b></h5>
-            <h5>Need something? <b>Buy it from a Student.</b></h5>
+            <h5>Need something? <b>Buy it from a Student!</b></h5>
             <p class="">Your scrap can be someone else's treasure!</p>
         </div>
     </div>
@@ -65,7 +66,7 @@
 
                     <!-- Sidebar -->
                     <div class="bg-light border-right d-none d-sm-block d-sm-none d-md-block" id="sidebar-wrapper">
-                        <div class="sidebar-heading d-none d-sm-block d-sm-none d-md-block">Categories</div>
+                        <div class="sidebar-heading d-none d-sm-block d-sm-none d-md-block" style="font-weight: 700;">Categories</div>
                         <div class="list-group list-group-flush">
                             <a
                                     class="list-group-item list-group-item-action bg-light"
@@ -100,9 +101,6 @@
                     </div>
                     <!-- /#sidebar-wrapper -->
 
-                    <!-- Page Content -->
-                    <div id="page-content-wrapper">
-
 
                         <div class="infinite-container row ml-3">
                             {% for result in posts %}
@@ -111,7 +109,7 @@
                                     <div class="card border-0 shadow">
                                         <img class="card-img-top" src="{{ result.images|thumbnail_url:'image' }}"
                                              alt="Card image cap">
-                                        <div class="card-body flex-fill text-left">
+                                        <div class="card-body text-left">
                                             <h4 class="card-title text-dark"><a
                                                     style="text-decoration: none;color: #1c1f23;font-weight: 700;"
                                                     href="{% url 'post-detail' result.id %}"
@@ -148,11 +146,6 @@
                                 </div>
                             {% endfor %}
                         </div>
-                        <div class="collapse" id="sidebarCollapse">
-
-                        </div>
-
-                    </div>
                     <!-- /#page-content-wrapper -->
 
                 </div>

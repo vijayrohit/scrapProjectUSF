@@ -4,19 +4,25 @@
     <section class="dark-grey-text mb-5">
                 <!-- About Section Heading-->
 
-
-                    <form class="col-lg-6 offset-lg-3" method="POST" style="border: #1c1f23; border-style: solid;border-radius: 25px;border-width: thin;">
-                        <h1 class="mb-3 mt-3">Login</h1>
+        <div class="row">
+            <div class="col-lg-4 offset-lg-1 mt-4">
+                <img
+                    src="https://drive.google.com/uc?export=view&id=1r114zN8EllFhBhN7KuZzSQnuaY6RKVjy" alt=""
+                    class="img-fluid">
+            </div>
+            <form class="col-lg-4 offset-lg-2 text-left mb-5" method="POST">
+                        <h1 class="mb-3 mt-3 text-center">Sign in</h1>
                         {% csrf_token %}
 
                         {{ form|crispy }}
-                        <button class="btn btn-xl btn-outline-dark mb-3" type="submit"> Login</button>
+                        <p class="text-right"> <a href="{% url 'password_reset' %}" style="color: dimgrey;text-decoration: none;"> Forgot password?</a></p>
+                        <button class="col-lg-12 btn btn-xl btn-outline-dark mb-3" type="submit" style="border-radius: 30px;">Sign in</button>
+                        <p class="text-center" style="color: dimgrey;">Don't have an account? <a href="{% url 'register' %}" style="color: #1c1f23; text-decoration: none;"> Sign up!</a>
+                    </p>
+            </form>
 
-                    </form>
-                    <p>Forgot Username or Password? <a href="{% url 'password_reset' %}" style="color: gainsboro;"> Click here!</a>
-                    </p>
-                    <p>Do not have an Account? <a href="{% url 'register' %}" style="color: gainsboro;"> Sign Up Now!</a>
-                    </p>
+        </div>
+
 
 
 

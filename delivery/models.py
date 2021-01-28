@@ -16,26 +16,28 @@ class Post(models.Model):
         ('SPORTS/OUTDOOR','Sports and Outdoor'),
         ('CLOTHING','Clothing'),
         ('FURNITURE','Furniture'),
-        ('OTHER','Other')
+        ('OTHER','Other'),
+        ('','Select a category')
     ]
     conditionChoices = [
         ('NEW', 'New'),
         ('LIKE NEW', 'Like New'),
         ('FAIR', 'Fair'),
         ('ACCEPTABLE', 'Acceptable'),
-        ('POOR', 'Poor')
+        ('POOR', 'Poor'),
+        ('','Select the condition')
     ]
     userId = models.ForeignKey(User, on_delete=models.CASCADE, default=17)
     title = models.CharField(max_length=100, blank=False)
     zip = models.CharField(max_length=200,default="", blank=False)
-    email = models.CharField(max_length=100,default="email")
-    name = models.CharField(max_length=100, blank=False, default="name")
-    description = models.CharField(max_length=100, blank=False, default="")
-    price = models.PositiveSmallIntegerField(blank=False, default=0)
+    email = models.CharField(max_length=100,blank=True)
+    name = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=300, blank=False, default="")
+    price = models.PositiveSmallIntegerField(blank=False)
     images = models.ImageField(upload_to='../media/ads/',blank=False, default='../media/default-img.gif')
-    category = models.CharField(max_length=100,choices=categoryChoices,blank=False,default='OTHER')
+    category = models.CharField(max_length=100,choices=categoryChoices,blank=False,default='')
     datePosted = models.DateTimeField(default=datetime.now(), blank=True)
-    condition = models.CharField(max_length=10,choices=conditionChoices,blank=False,default='FAIR')
+    condition = models.CharField(max_length=10,choices=conditionChoices,blank=False,default='')
     def __str__(self):
         return self.name
 

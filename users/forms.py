@@ -1,16 +1,30 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.forms import TextInput, PasswordInput
 
+
+class CustomAuthForm(AuthenticationForm):
+    username = forms.CharField(widget=TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'Password'}))
 
 class UserRegisterForm(UserCreationForm):
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    email = forms.EmailField()
-
+    username = forms.CharField(widget=TextInput(attrs={'placeholder': 'Username'}))
+    first_name = forms.CharField(widget=TextInput(attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(widget=TextInput(attrs={'placeholder': 'Last Name'}))
+    email = forms.EmailField(widget=TextInput(attrs={'class':'validate','placeholder': 'School Email ID'}))
+    password1 = forms.PasswordInput(attrs={'placeholder': 'Password'})
+    password2 = forms.PasswordInput(attrs={'placeholder': 'Confirm Password'})
     class Meta:
         model = User
         fields = ['username', 'first_name','last_name', 'email', 'password1', 'password2']
+
+    def __init__(self, *args, **kwargs):
+        super(UserRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget = PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Password'})
+        self.fields['password2'].widget = PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'Password confirmation'})
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
