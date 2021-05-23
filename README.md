@@ -22,8 +22,6 @@ The following are few things needed to run the project on the local system.
 
 - Latest web broswer with active internet connection (for better user experience)
 - Install Python 3.8, Django, crispy-django-forms, pillow
-
-- `python -m pip install -r requirements.txt`
 <!-- USAGE EXAMPLES -->
 
 ## Features
